@@ -1,0 +1,58 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xxl-6">
+            <table class="table">
+                <thead>
+                    <th class="display-4 text-center">Name</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let good of goods" (click)="selectGood(good)" style="cursor: pointer;">
+                        <td>{{good.ProductDescription}}</td>
+                    </tr>
+                </tbody>
+                
+            </table>
+    
+        </div>
+        <div class="col-xxl-6" *ngIf="selectedGood">
+            <table class="table table-bordered border-dark sticky-top">
+                <thead>
+                    <tr>
+                    <th>ProductId</th>
+                    <th>ColorIdx</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Von Datum</th>
+                    <th>IsHeavy</th>
+                    <th>Restricted Lands</th>
+                    <th>Is Fsk</th>
+                    <th>IsOrdergruppeC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{selectedGood.ProductId}}</td>
+                        <td>{{selectedGood.ColorIdx}}</td>
+                        <td>{{selectedGood.ProductDescription}}</td>
+                        <td>{{selectedGood.Price}}</td>
+                        <div [ngSwitch]="selectedGood.VoDatum">
+                             <td *ngSwitchCase="null">it's unknown</td>
+                             <td *ngSwitchDefault>{{selectedGood.VoDatum}}</td>
+                        </div>
+                        <td>{{selectedGood.IsHeavy}}</td>
+                        <div [ngSwitch]="selectedGood.RestrictedLands">
+                            <td *ngSwitchCase="null">it's unknown</td>
+                            <td *ngSwitchDefault>{{selectedGood.RestrictedLands}}</td>
+                        </div>
+                        <td>{{selectedGood.IsFsk}}</td>
+                        <td>{{selectedGood.IsOrdergruppeC}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-danger" (click)="deleteSelectedGood()"
+            style="position: fixed; right: 0;">Close</button>
+        </div>
+    </div>
+</div>
+
+
